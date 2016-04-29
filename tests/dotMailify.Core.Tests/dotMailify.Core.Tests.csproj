@@ -74,14 +74,21 @@
     <Compile Include="EmailProvider\EmailProviderTests.cs" />
     <Compile Include="Message\EmailMessageBodyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Smtp\DefaultPickupLocationProviderSettingsTests.cs" />
+    <Compile Include="Smtp\DefaultSmtpClientProviderSettingsTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\dotMailify.Core\dotMailify.Core.csproj">
       <Project>{50eea9e1-e8d8-4c92-a736-4f4bb40d20af}</Project>
       <Name>dotMailify.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\providers\dotMailify.Smtp\dotMailify.Smtp.csproj">
+      <Project>{1a001481-afa8-4bf7-a036-757a2b9e67e5}</Project>
+      <Name>dotMailify.Smtp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

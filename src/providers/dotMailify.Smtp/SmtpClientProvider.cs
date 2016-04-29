@@ -2,6 +2,8 @@ using System.Net;
 using System.Net.Mail;
 using dotMailify.Core.Message;
 using dotMailify.Smtp.Abstractions;
+using dotMailify.Smtp.Abstractions.Config;
+using dotMailify.Smtp.Config;
 
 namespace dotMailify.Smtp
 {

@@ -45,9 +45,10 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Abstractions\SmtpClientMailMessageProvider.cs" />
-    <Compile Include="DefaultSmtpClientProviderSettings.cs" />
-    <Compile Include="ISmtpClientProviderSettings.cs" />
-    <Compile Include="Pickup\IPickupLocationProviderSettings.cs" />
+    <Compile Include="Config\DefaultSmtpClientProviderSettings.cs" />
+    <Compile Include="Abstractions\Config\ISmtpClientProviderSettings.cs" />
+    <Compile Include="Pickup\Config\DefaultPickupLocationProviderSettings.cs" />
+    <Compile Include="Abstractions\Config\IPickupLocationProviderSettings.cs" />
     <Compile Include="Pickup\PickupLocationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmtpClientProvider.cs" />

@@ -1,6 +1,6 @@
 using dotMailify.Core.Abstractions.Config;
 
-namespace dotMailify.Smtp.Pickup
+namespace dotMailify.Smtp.Abstractions.Config
 {
 	public interface IPickupLocationProviderSettings : IEmailProviderSettings
 	{

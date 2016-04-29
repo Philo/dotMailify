@@ -1,31 +1,11 @@
-using System.Configuration;
-using System.Net.Configuration;
 using System.Net.Mail;
 using dotMailify.Core.Message;
 using dotMailify.Smtp.Abstractions;
+using dotMailify.Smtp.Abstractions.Config;
+using dotMailify.Smtp.Pickup.Config;
 
 namespace dotMailify.Smtp.Pickup
 {
-    public sealed class DefaultPickupLocationProviderSettings : IPickupLocationProviderSettings
-    {
-        private void ConfigureFromMailAppSettings()
-        {
-            var settings = ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection;
-            if (settings != null)
-            {
-                Location = settings.SpecifiedPickupDirectory?.PickupDirectoryLocation;
-            }
-        }
-
-        public DefaultPickupLocationProviderSettings()
-        {
-            ConfigureFromMailAppSettings();
-        }
-
-        public bool EnableDelivery { get; } = false;
-        public string Location { get; private set; }
-    }
-
     public class PickupLocationProvider : SmtpClientMailMessageProvider<EmailMessage, IPickupLocationProviderSettings>
 	{
 		public PickupLocationProvider(IPickupLocationProviderSettings settings)
@@ -39,7 +19,6 @@ namespace dotMailify.Smtp.Pickup
 		{
 			var client = new SmtpClient
 			{
-				EnableSsl = false,
 				DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
 				PickupDirectoryLocation = Settings.Location
 			};

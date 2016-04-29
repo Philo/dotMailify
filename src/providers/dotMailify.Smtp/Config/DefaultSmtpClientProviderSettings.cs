@@ -1,7 +1,8 @@
 using System.Configuration;
 using System.Net.Configuration;
+using dotMailify.Smtp.Abstractions.Config;
 
-namespace dotMailify.Smtp
+namespace dotMailify.Smtp.Config
 {
     public sealed class DefaultSmtpClientProviderSettings : ISmtpClientProviderSettings
     {
