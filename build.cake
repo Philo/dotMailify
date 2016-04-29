@@ -132,6 +132,7 @@ Task("Package")
 
 Task("Copy-Packages-Locally")
     .IsDependentOn("Package")
+    .WithCriteria(() => BuildSystem.IsLocalBuild)
     .Does(() => 
 {
     var localProfile = Environment.GetEnvironmentVariable("USERPROFILE");
@@ -152,7 +153,7 @@ Task("Run-Unit-Tests")
         NoAppDomain = true,
         OutputDirectory = testResultsPath,
     };
-    // settings.ExcludeTrait("Category", "Integration");
+    settings.ExcludeTrait("Category", "Integration");
     
     XUnit2(testAssemblies, settings);
 });
@@ -162,7 +163,7 @@ Task("Update-AppVeyor-Build-Number")
     .WithCriteria(() => AppVeyor.IsRunningOnAppVeyor)
     .Does(() =>
 {
-    AppVeyor.UpdateBuildVersion(string.Format("{0}-{1}", versionInfo.FullSemVer, AppVeyor.Environment.Build.Number);
+    AppVeyor.UpdateBuildVersion(string.Format("{0}-{1}", versionInfo.FullSemVer, AppVeyor.Environment.Build.Number));
 });
 
 //////////////////////////////////////////////////////////////////////

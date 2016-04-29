@@ -4,6 +4,7 @@ using Xunit;
 
 namespace dotMailify.Core.Tests.Smtp
 {
+    [Trait("Category", "Integration")]
     public class DefaultPickupLocationProviderSettingsTests
     {
         [Fact]
