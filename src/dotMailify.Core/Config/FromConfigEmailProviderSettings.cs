@@ -7,7 +7,7 @@ namespace dotMailify.Core.Config
 {
     public class FromConfigEmailProviderSettings : IEmailProviderSettings
     {
-        private const string Prefix = "Storm.Email:";
+        private const string Prefix = "dotMailify:";
 
         public bool EnableDelivery => GetFromAppSettings(false);
         public string BccToDirectory => GetFromAppSettings();
