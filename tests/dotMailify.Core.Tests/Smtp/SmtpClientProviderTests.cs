@@ -17,7 +17,6 @@ namespace dotMailify.Core.Tests.Smtp
     public class SmtpPickupLocationProviderTests : IDisposable
     {
         private readonly DirectoryInfo _tempDirectory;
-        private readonly Mock<IPickupLocationProviderSettings> _settings;
 
         public SmtpPickupLocationProviderTests()
         {
