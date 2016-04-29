@@ -5,7 +5,7 @@
     <version>$version$</version>
     <authors>Phil Oyston</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Provides an email sending provider configurable via code or configuration</description>
+    <description>Provides an smtp email sending provider for the dotMailify library</description>
     <language>en-GB</language>
     <copyright>Phil Oyston</copyright>
     <tags>mail email</tags>
