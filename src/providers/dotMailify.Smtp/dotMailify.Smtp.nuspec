@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>Phil Oyston</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides an email sending provider configurable via code or configuration</description>
+    <language>en-GB</language>
+    <copyright>Phil Oyston</copyright>
+    <tags>mail email</tags>
+    <iconUrl>http://stormid.com/media/48267/logo.jpg</iconUrl>
+  </metadata>
+</package>

@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F1086660-146B-4817-9CEC-490A5D4F5B00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3772714E-1E87-48B9-97A3-C6A44535EC58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotMailify.Core", "src\dotMailify.Core\dotMailify.Core.csproj", "{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotMailify.Core.Tests", "tests\dotMailify.Core.Tests\dotMailify.Core.Tests.csproj", "{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "providers", "providers", "{1F18BF65-51AF-423D-BBFA-4A01DF9A2B15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotMailify.Smtp", "src\providers\dotMailify.Smtp\dotMailify.Smtp.csproj", "{1A001481-AFA8-4BF7-A036-757A2B9E67E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF} = {F1086660-146B-4817-9CEC-490A5D4F5B00}
+		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C} = {3772714E-1E87-48B9-97A3-C6A44535EC58}
+		{1F18BF65-51AF-423D-BBFA-4A01DF9A2B15} = {F1086660-146B-4817-9CEC-490A5D4F5B00}
+		{1A001481-AFA8-4BF7-A036-757A2B9E67E5} = {1F18BF65-51AF-423D-BBFA-4A01DF9A2B15}
+	EndGlobalSection
+EndGlobal
