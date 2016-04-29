@@ -22,7 +22,7 @@ namespace dotMailify.Core.Tests.EmailProvider
         }
 
         [Fact]
-        public void Should()
+        public void ShouldSendEmailToTestProvider()
         {
             var message = new EmailMessage("from@localtest.me", "to@localtest.me")
             {
