@@ -15,7 +15,7 @@ namespace dotMailify.Core.Tests.EmailProvider
         public EmailProviderTests()
         {
             _settings = new Mock<IEmailProviderSettings>();
-            _settings.SetupGet(g => g.EnableDelivery).Returns(true);
+            _settings.SetupGet(g => g.DisableDelivery).Returns(false);
 
             _factory = new UnitTestEmailProviderFactory(_settings.Object);
             _provider = (UnitTestTrackingEmailProvider)_factory.GetEmailProvider();

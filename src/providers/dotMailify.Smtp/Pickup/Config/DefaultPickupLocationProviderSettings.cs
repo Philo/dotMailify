@@ -1,10 +1,11 @@
 using System.Configuration;
 using System.Net.Configuration;
+using dotMailify.Core.Config;
 using dotMailify.Smtp.Abstractions.Config;
 
 namespace dotMailify.Smtp.Pickup.Config
 {
-    public sealed class DefaultPickupLocationProviderSettings : IPickupLocationProviderSettings
+    public sealed class DefaultPickupLocationProviderSettings : DefaultEmailProviderSettings, IPickupLocationProviderSettings
     {
         private void ConfigureFromMailAppSettings()
         {
@@ -20,7 +21,6 @@ namespace dotMailify.Smtp.Pickup.Config
             ConfigureFromMailAppSettings();
         }
 
-        public bool EnableDelivery { get; } = false;
         public string Location { get; private set; }
     }
 }

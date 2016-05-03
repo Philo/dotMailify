@@ -58,7 +58,7 @@
     <Compile Include="Abstractions\Message\IEmailMessage.cs" />
     <Compile Include="Abstractions\Message\IEmailMessageAttachment.cs" />
     <Compile Include="Abstractions\Message\IEmailMessageWithAttachment.cs" />
-    <Compile Include="Config\FromConfigEmailProviderSettings.cs" />
+    <Compile Include="Config\DefaultEmailProviderSettings.cs" />
     <Compile Include="Abstractions\IEmailProvider.cs" />
     <Compile Include="Abstractions\Config\IEmailProviderSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

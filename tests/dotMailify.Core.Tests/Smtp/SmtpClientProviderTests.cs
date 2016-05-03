@@ -28,7 +28,7 @@ namespace dotMailify.Core.Tests.Smtp
         public async Task ShouldDeliverToPickupLocation()
         {
             var settings = new Mock<IPickupLocationProviderSettings>();
-            settings.SetupGet(s => s.EnableDelivery).Returns(true);
+            settings.SetupGet(s => s.DisableDelivery).Returns(false);
             settings.SetupGet(s => s.Location).Returns(_tempDirectory.FullName);
 
             var provider = new PickupLocationProvider(settings.Object);
@@ -61,7 +61,7 @@ namespace dotMailify.Core.Tests.Smtp
         {
             _server = SimpleSmtpServer.Start(64666);
             _settings = new Mock<ISmtpClientProviderSettings>();
-            _settings.SetupGet(s => s.EnableDelivery).Returns(true);
+            _settings.SetupGet(s => s.DisableDelivery).Returns(false);
             _settings.SetupGet(s => s.Host).Returns("localhost");
             _settings.SetupGet(s => s.Port).Returns(_server.Port);
         }

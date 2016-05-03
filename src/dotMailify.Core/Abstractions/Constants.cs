@@ -1,10 +1,11 @@
 namespace dotMailify.Core.Abstractions
 {
-    public static class Constants
+    internal static class Constants
     {
-        public static class Settings
+        internal static class Settings
         {
-            public const string EmailProviderTypeKey = "dotMailify:ProviderType";
+            public const string SettingsPrefix = "dotMailify:";
+            public static string EmailProviderTypeKey = $"{SettingsPrefix}ProviderType";
         }
         
     }

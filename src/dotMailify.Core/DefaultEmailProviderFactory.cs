@@ -17,7 +17,7 @@ namespace dotMailify.Core
         {
         }
 
-        public override IEmailProvider CreateInstance(Type emailProviderType)
+        public override IEmailProvider CreateInstanceCore(Type emailProviderType)
         {
             return (IEmailProvider)Activator.CreateInstance(emailProviderType);
         }

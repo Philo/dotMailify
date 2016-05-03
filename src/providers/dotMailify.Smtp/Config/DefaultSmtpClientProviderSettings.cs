@@ -1,12 +1,12 @@
 using System.Configuration;
 using System.Net.Configuration;
+using dotMailify.Core.Config;
 using dotMailify.Smtp.Abstractions.Config;
 
 namespace dotMailify.Smtp.Config
 {
-    public sealed class DefaultSmtpClientProviderSettings : ISmtpClientProviderSettings
+    public sealed class DefaultSmtpClientProviderSettings : DefaultEmailProviderSettings, ISmtpClientProviderSettings
     {
-        public bool EnableDelivery { get; } = false;
         public string Host { get; private set; }
         public int Port { get; private set; } = 25;
         public bool EnableSsl { get; private set; }
