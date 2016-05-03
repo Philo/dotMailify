@@ -7,7 +7,7 @@ namespace dotMailify.Smtp.Config
 {
     public sealed class DefaultSmtpClientProviderSettings : DefaultEmailProviderSettings, ISmtpClientProviderSettings
     {
-        public string Host { get; private set; }
+        public string Host { get; private set; } = "localhost";
         public int Port { get; private set; } = 25;
         public bool EnableSsl { get; private set; }
         public string Username { get; private set; }
