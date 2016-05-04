@@ -97,7 +97,7 @@ namespace dotMailify.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to the specified email provider type can be found.
+        ///   Looks up a localized string similar to the specified email provider type can not be found.
         /// </summary>
         internal static string EmailProviderTypeNotFound {
             get {

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using dotMailify.Core;
 using dotMailify.Core.Abstractions.Config;
 using dotMailify.Core.Abstractions.Message;
+using dotMailify.Core.Logging;
 using dotMailify.Core.Message;
 
 namespace dotMailify.Smtp.Abstractions
@@ -16,7 +17,7 @@ namespace dotMailify.Smtp.Abstractions
 		{
 		}
 
-		protected virtual MailMessage CreateMailMessage(TEmailMessage message)
+        protected virtual MailMessage CreateMailMessage(TEmailMessage message)
 		{
 			var mailMessage = message.ToMimeMessage();
 			return CreateMailMessageCore(mailMessage, message);

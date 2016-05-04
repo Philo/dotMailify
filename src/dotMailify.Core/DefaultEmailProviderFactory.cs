@@ -1,6 +1,9 @@
 using System;
 using System.Configuration;
+using System.Reflection;
 using dotMailify.Core.Abstractions;
+using dotMailify.Core.Abstractions.Config;
+using dotMailify.Core.Logging;
 
 namespace dotMailify.Core
 {
@@ -17,9 +20,11 @@ namespace dotMailify.Core
         {
         }
 
-        public override IEmailProvider CreateInstanceCore(Type emailProviderType)
+        protected override IEmailProvider CreateInstanceCore(Type emailProviderType, IEmailLoggingProvider emailLoggingProvider)
         {
-            return (IEmailProvider)Activator.CreateInstance(emailProviderType);
+            var provider = (IEmailProvider)Activator.CreateInstance(emailProviderType);
+            provider.EmailLoggingProvider = emailLoggingProvider;
+            return provider;
         }
 
         protected override Type GetProviderType()

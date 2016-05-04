@@ -49,7 +49,7 @@
       <Link>Properties\VersionAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AbstractEmailProvider.cs" />
-    <Compile Include="Abstractions\Constants.cs" />
+    <Compile Include="Abstractions\Config\Constants.cs" />
     <Compile Include="DefaultEmailProviderFactory.cs" />
     <Compile Include="Abstractions\EmailProviderFactoryBase.cs" />
     <Compile Include="Abstractions\IEmailProviderFactory.cs" />
@@ -82,6 +82,7 @@
     <EmbeddedResource Include="Validation.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Validation.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

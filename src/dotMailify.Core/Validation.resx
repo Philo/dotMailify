@@ -139,6 +139,6 @@
     <value>email provider settings must be specified</value>
   </data>
   <data name="EmailProviderTypeNotFound" xml:space="preserve">
-    <value>the specified email provider type can be found</value>
+    <value>the specified email provider type can not be found</value>
   </data>
 </root>

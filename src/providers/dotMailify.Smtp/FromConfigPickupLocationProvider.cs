@@ -1,3 +1,4 @@
+using dotMailify.Core.Logging;
 using dotMailify.Smtp.Pickup;
 
 namespace dotMailify.Smtp

@@ -1,4 +1,4 @@
-namespace dotMailify.Core.Abstractions
+namespace dotMailify.Core.Abstractions.Config
 {
     internal static class Constants
     {

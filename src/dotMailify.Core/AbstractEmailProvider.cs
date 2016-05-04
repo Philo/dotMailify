@@ -26,22 +26,19 @@ namespace dotMailify.Core
 		where TEmailProcessorSettings : IEmailProviderSettings
 	{
 	    private readonly TEmailProcessorSettings _settings;
-	    private readonly IEmailLoggingProvider _emailLoggingProvider;
+
+        public IEmailLoggingProvider EmailLoggingProvider { get; set; }
 
 	    protected virtual void Log(string logMessage, Exception exception = null)
         {
-            _emailLoggingProvider?.Log(logMessage, exception);
+            EmailLoggingProvider?.Log(logMessage, exception);
         }
 
-        protected AbstractEmailProvider(TEmailProcessorSettings settings) : this(settings, null)
-        {
-        }
-
-        protected AbstractEmailProvider(TEmailProcessorSettings settings, IEmailLoggingProvider emailLoggingProvider)
+        protected AbstractEmailProvider(TEmailProcessorSettings settings)
 		{
             if(settings == null) throw new ArgumentNullException(nameof(settings), Validation.EmailProvider_SettingsNotSpecified);
 			_settings = settings;
-            _emailLoggingProvider = emailLoggingProvider ?? new NullEmailLoggingProvider();
+            EmailLoggingProvider = new NullEmailLoggingProvider();
 		}
 
 		public void Send(IEmailMessage message)
@@ -65,11 +62,11 @@ namespace dotMailify.Core
 			    try
 			    {
 			        await SendCore(message as TEmailMessage, _settings);
-			        _emailLoggingProvider?.Sent(message, "Email message sent");
+			        EmailLoggingProvider?.Sent(message, "Email message sent");
 			    }
 			    catch (Exception exception)
 			    {
-			        _emailLoggingProvider?.Failed(message, exception, "A failure occurred while sending message");
+			        EmailLoggingProvider?.Failed(message, exception, "A failure occurred while sending message");
 			        throw;
 			    }
 			}
@@ -78,7 +75,7 @@ namespace dotMailify.Core
 			    var msg =
 			        $"Email delivery via [{GetType().Name}] of message {message.Subject} did not occur due to configuration";
                 Log(msg);
-                _emailLoggingProvider?.Blocked(message, msg);
+                EmailLoggingProvider?.Blocked(message, msg);
 			}
 		}
 

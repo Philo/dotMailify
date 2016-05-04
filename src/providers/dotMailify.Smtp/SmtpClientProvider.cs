@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Mail;
 using dotMailify.Core.Abstractions.Message;
 using dotMailify.Core.Config;
+using dotMailify.Core.Logging;
 using dotMailify.Core.Message;
 using dotMailify.Smtp.Abstractions;
 using dotMailify.Smtp.Abstractions.Config;
@@ -36,11 +37,13 @@ namespace dotMailify.Smtp
     }
 
     public class SmtpClientProvider : SmtpClientProvider<EmailMessage, ISmtpClientProviderSettings>
-	{
-        public SmtpClientProvider() : this(new DefaultSmtpClientProviderSettings()) { }
+    {
+        public SmtpClientProvider() : this(new DefaultSmtpClientProviderSettings())
+        {
+        }
 
-		public SmtpClientProvider(ISmtpClientProviderSettings settings) : base(settings)
-		{
-		}
-	}
+        public SmtpClientProvider(ISmtpClientProviderSettings settings) : base(settings)
+        {
+        }
+    }
 }

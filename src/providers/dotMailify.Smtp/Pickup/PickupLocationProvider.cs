@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using dotMailify.Core.Logging;
 using dotMailify.Core.Message;
 using dotMailify.Smtp.Abstractions;
 using dotMailify.Smtp.Abstractions.Config;
