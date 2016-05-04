@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>dotMailify.Core</RootNamespace>
     <AssemblyName>dotMailify.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,6 +53,8 @@
     <Compile Include="DefaultEmailProviderFactory.cs" />
     <Compile Include="Abstractions\EmailProviderFactoryBase.cs" />
     <Compile Include="Abstractions\IEmailProviderFactory.cs" />
+    <Compile Include="Logging\IEmailLoggingProvider.cs" />
+    <Compile Include="Logging\TraceEmailLoggingProvider.cs" />
     <Compile Include="Message\EmailAddress.cs" />
     <Compile Include="Message\EmailMessage.cs" />
     <Compile Include="Message\EmailMessageAttachment.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="Config\DefaultEmailProviderSettings.cs" />
     <Compile Include="Abstractions\IEmailProvider.cs" />
     <Compile Include="Abstractions\Config\IEmailProviderSettings.cs" />
+    <Compile Include="Logging\NullEmailLoggingProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation.Designer.cs">
       <AutoGen>True</AutoGen>

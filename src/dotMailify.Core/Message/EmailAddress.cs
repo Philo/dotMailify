@@ -21,8 +21,18 @@ namespace dotMailify.Core.Message
 		{
 			return new EmailAddress(emailAddress);
 		}
-		
-		public override int GetHashCode()
+
+        static public implicit operator MailAddress(EmailAddress emailAddress)
+        {
+            return new MailAddress(emailAddress.Address, emailAddress.DisplayAs);
+        }
+
+        static public implicit operator EmailAddress(MailAddress emailAddress)
+        {
+            return new EmailAddress(emailAddress.Address, emailAddress.DisplayName);
+        }
+
+        public override int GetHashCode()
 		{
 			return Address.GetHashCode();
 		}

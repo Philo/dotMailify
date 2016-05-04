@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "providers", "providers", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotMailify.Smtp", "src\providers\dotMailify.Smtp\dotMailify.Smtp.csproj", "{1A001481-AFA8-4BF7-A036-757A2B9E67E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotmailify.SendGrid", "src\providers\dotMailify.SendGrid\dotmailify.SendGrid.csproj", "{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,5 +48,6 @@ Global
 		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C} = {3772714E-1E87-48B9-97A3-C6A44535EC58}
 		{1F18BF65-51AF-423D-BBFA-4A01DF9A2B15} = {F1086660-146B-4817-9CEC-490A5D4F5B00}
 		{1A001481-AFA8-4BF7-A036-757A2B9E67E5} = {1F18BF65-51AF-423D-BBFA-4A01DF9A2B15}
+		{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF} = {1F18BF65-51AF-423D-BBFA-4A01DF9A2B15}
 	EndGlobalSection
 EndGlobal

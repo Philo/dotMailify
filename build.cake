@@ -121,7 +121,7 @@ Task("Package")
         OutputDirectory = packagesOutput,
         BasePath = buildOutput,
         Files = new[] {
-            new NuSpecContent { Source = "dotMailify.Core.dll", Target = "lib/net46" }
+            new NuSpecContent { Source = "dotMailify.Core.dll", Target = "lib/net45" }
         }
     });
     
@@ -134,7 +134,23 @@ Task("Package")
         OutputDirectory = packagesOutput,
         BasePath = buildOutput,
         Files = new[] {
-            new NuSpecContent { Source = "dotMailify.Smtp.dll", Target = "lib/net46" }
+            new NuSpecContent { Source = "dotMailify.Smtp.dll", Target = "lib/net45" }
+        },
+        Dependencies = new[] {
+            new NuSpecDependency { Id="dotMailify.Core", Version=GetNugetVersionString() }
+        }
+    });    
+
+    NuGetPack("nuspec/dotMailify.nuspec", new NuGetPackSettings {
+        Id = "dotMailify.SendGrid",
+        NoPackageAnalysis = false,     
+        Properties = new Dictionary<string, string> { { "Configuration", configuration }},
+        Symbols = false,
+        Version = GetNugetVersionString(),
+        OutputDirectory = packagesOutput,
+        BasePath = buildOutput,
+        Files = new[] {
+            new NuSpecContent { Source = "dotMailify.SendGrid.dll", Target = "lib/net45" }
         },
         Dependencies = new[] {
             new NuSpecDependency { Id="dotMailify.Core", Version=GetNugetVersionString() }

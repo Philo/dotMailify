@@ -8,6 +8,7 @@ using dotMailify.Core.Abstractions;
 using dotMailify.Core.Abstractions.Config;
 using dotMailify.Core.Abstractions.Message;
 using dotMailify.Core.Config;
+using dotMailify.Core.Logging;
 using dotMailify.Core.Message;
 
 namespace dotMailify.Core
@@ -24,17 +25,23 @@ namespace dotMailify.Core
 		where TEmailMessage : class, IEmailMessage
 		where TEmailProcessorSettings : IEmailProviderSettings
 	{
-		protected TEmailProcessorSettings Settings { get; set; }
-        
-        protected virtual void Log(string logMessage, Exception exception = null)
+	    private readonly TEmailProcessorSettings _settings;
+	    private readonly IEmailLoggingProvider _emailLoggingProvider;
+
+	    protected virtual void Log(string logMessage, Exception exception = null)
         {
-            Trace.WriteLine(logMessage);
+            _emailLoggingProvider?.Log(logMessage, exception);
         }
 
-        protected AbstractEmailProvider(TEmailProcessorSettings settings)
+        protected AbstractEmailProvider(TEmailProcessorSettings settings) : this(settings, null)
+        {
+        }
+
+        protected AbstractEmailProvider(TEmailProcessorSettings settings, IEmailLoggingProvider emailLoggingProvider)
 		{
             if(settings == null) throw new ArgumentNullException(nameof(settings), Validation.EmailProvider_SettingsNotSpecified);
-			Settings = settings;
+			_settings = settings;
+            _emailLoggingProvider = emailLoggingProvider ?? new NullEmailLoggingProvider();
 		}
 
 		public void Send(IEmailMessage message)
@@ -53,13 +60,25 @@ namespace dotMailify.Core
 		public async Task SendAsync(IEmailMessage message)
 		{
 			Validate(message);
-			if (!Settings.DisableDelivery)
+			if (!_settings.DisableDelivery)
 			{
-				await SendCore(message as TEmailMessage, Settings);
+			    try
+			    {
+			        await SendCore(message as TEmailMessage, _settings);
+			        _emailLoggingProvider?.Sent(message, "Email message sent");
+			    }
+			    catch (Exception exception)
+			    {
+			        _emailLoggingProvider?.Failed(message, exception, "A failure occurred while sending message");
+			        throw;
+			    }
 			}
 			else
 			{
-                Log($"Email delivery via [{GetType().Name}] of message {message.Subject} did not occur due to configuration [EnableDelivery = false]");
+			    var msg =
+			        $"Email delivery via [{GetType().Name}] of message {message.Subject} did not occur due to configuration";
+                Log(msg);
+                _emailLoggingProvider?.Blocked(message, msg);
 			}
 		}
 

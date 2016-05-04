@@ -36,7 +36,7 @@ namespace dotMailify.Smtp.Abstractions
 
 		protected async override Task SendCore(TEmailMessage message, TSettings settings)
 		{
-			using (var client = CreateSmtpClient(Settings))
+			using (var client = CreateSmtpClient(settings))
 			{
 				var mailMessage = CreateMailMessage(message);
 				await client.SendMailAsync(mailMessage);

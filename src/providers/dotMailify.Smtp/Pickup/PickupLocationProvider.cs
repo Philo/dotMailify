@@ -21,7 +21,7 @@ namespace dotMailify.Smtp.Pickup
 			{
                 EnableSsl = false,
 				DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
-				PickupDirectoryLocation = Settings.Location
+				PickupDirectoryLocation = settings.Location
 			};
 
 			return client;

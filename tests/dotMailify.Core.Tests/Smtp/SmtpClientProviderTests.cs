@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 using dotMailify.Core.Message;
 using dotMailify.Smtp;
@@ -82,6 +83,36 @@ namespace dotMailify.Core.Tests.Smtp
             receivedMessage.Subject.Should().Be("Unit test");
             receivedMessage.Body.Should().Be("Hello world");
             receivedMessage.IsBodyHtml.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task ShouldSendEmailWithAttachmentUsingSmtp()
+        {
+            var provider = new SmtpClientProvider(_settings.Object);
+            var message = new EmailMessageWithAttachment("from@localtest.me", "to@localtest.me")
+            {
+                Subject = "Unit test"
+            };
+
+            message.AddBody(EmailMessageBody.FromText("Hello world"));
+            var textStream = new MemoryStream();
+            using (var wtr = new StreamWriter(textStream))
+            {
+                wtr.WriteLine("Hello world attachment");
+                wtr.Flush();
+                message.AddAttachment(EmailMessageAttachment.Create(textStream, Encoding.UTF8, "test.txt", "plain/text"));
+                await provider.SendAsync(message);
+            }
+
+            _server.ReceivedEmailCount.Should().Be(1);
+            var receivedMessage = _server.ReceivedEmail.First();
+            receivedMessage.Subject.Should().Be("Unit test");
+            receivedMessage.Body.Should().Be("Hello world");
+            receivedMessage.IsBodyHtml.Should().BeFalse();
+
+            receivedMessage.Attachments.Count.Should().Be(1);
+            receivedMessage.Attachments.First().Name.Should().Be("test.txt");
+            receivedMessage.Attachments.First().ContentType.MediaType.Should().Be("plain/text");
         }
 
         public void Dispose()
