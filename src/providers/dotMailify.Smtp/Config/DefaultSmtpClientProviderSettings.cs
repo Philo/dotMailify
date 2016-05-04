@@ -13,7 +13,7 @@ namespace dotMailify.Smtp.Config
         public string Username { get; private set; }
         public string Password { get; private set; }
 
-        private void ConfigureFromMailAppSettings()
+        private void Configure()
         {
             var settings = ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection;
             if (settings != null)
@@ -28,7 +28,7 @@ namespace dotMailify.Smtp.Config
 
         public DefaultSmtpClientProviderSettings()
         {
-            ConfigureFromMailAppSettings();
+            Configure();
         }
     }
 }

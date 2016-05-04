@@ -44,6 +44,9 @@
     <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\..\VersionAssemblyInfo.cs">
+      <Link>Properties\VersionAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AbstractEmailProvider.cs" />
     <Compile Include="Abstractions\Constants.cs" />
     <Compile Include="DefaultEmailProviderFactory.cs" />
@@ -70,9 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Storm.Email.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="dotMailify.Core.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Validation.resx">

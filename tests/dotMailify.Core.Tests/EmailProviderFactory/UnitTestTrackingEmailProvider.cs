@@ -14,7 +14,7 @@ namespace dotMailify.Core.Tests.EmailProviderFactory
         {
         }
 
-        protected override Task SendCore(EmailMessage message)
+        protected override Task SendCore(EmailMessage message, IEmailProviderSettings settings)
         {
             return Task.Run(() => _emailMessageList.Add(message));
         }

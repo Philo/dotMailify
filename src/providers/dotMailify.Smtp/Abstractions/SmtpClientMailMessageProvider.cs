@@ -32,11 +32,11 @@ namespace dotMailify.Smtp.Abstractions
 			return recipient.ToMailAddress();
 		}
 
-		protected abstract SmtpClient CreateSmtpClient();
+		protected abstract SmtpClient CreateSmtpClient(TSettings settings);
 
-		protected async override Task SendCore(TEmailMessage message)
+		protected async override Task SendCore(TEmailMessage message, TSettings settings)
 		{
-			using (var client = CreateSmtpClient())
+			using (var client = CreateSmtpClient(Settings))
 			{
 				var mailMessage = CreateMailMessage(message);
 				await client.SendMailAsync(mailMessage);

@@ -15,7 +15,7 @@ namespace dotMailify.Smtp.Pickup
 
         public PickupLocationProvider() : this(new DefaultPickupLocationProviderSettings()) { }
 
-		protected override SmtpClient CreateSmtpClient()
+		protected sealed override SmtpClient CreateSmtpClient(IPickupLocationProviderSettings settings)
 		{
 			var client = new SmtpClient
 			{

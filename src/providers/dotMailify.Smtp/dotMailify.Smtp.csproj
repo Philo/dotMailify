@@ -44,9 +44,16 @@
     <Compile Include="..\..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\VersionAssemblyInfo.cs">
+      <Link>Properties\VersionAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Abstractions\SmtpClientMailMessageProvider.cs" />
     <Compile Include="Config\DefaultSmtpClientProviderSettings.cs" />
     <Compile Include="Abstractions\Config\ISmtpClientProviderSettings.cs" />
+    <Compile Include="FromConfigPickupLocationProvider.cs" />
+    <Compile Include="FromConfigPickupLocationProviderSettings.cs" />
+    <Compile Include="FromConfigSmtpClientProvider.cs" />
+    <Compile Include="Config\FromConfigSmtpClientProviderSettings.cs" />
     <Compile Include="Pickup\Config\DefaultPickupLocationProviderSettings.cs" />
     <Compile Include="Abstractions\Config\IPickupLocationProviderSettings.cs" />
     <Compile Include="Pickup\PickupLocationProvider.cs" />
@@ -58,11 +65,6 @@
       <Project>{50eea9e1-e8d8-4c92-a736-4f4bb40d20af}</Project>
       <Name>dotMailify.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="dotMailify.Smtp.nuspec">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

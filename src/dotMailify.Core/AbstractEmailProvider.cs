@@ -12,17 +12,6 @@ using dotMailify.Core.Message;
 
 namespace dotMailify.Core
 {
-    internal class DisabledEmailProvider : AbstractEmailProvider
-    {
-        protected override Task SendCore(EmailMessage message)
-        {
-            return Task.Run(() =>
-            {
-                Trace.WriteLine("Email delivery has been disabled, your email has not been sent");
-            });
-        }
-    }
-
     public abstract class AbstractEmailProvider : AbstractEmailProvider<EmailMessage, IEmailProviderSettings> {
 		protected AbstractEmailProvider(IEmailProviderSettings settings) : base(settings)
 		{
@@ -66,7 +55,7 @@ namespace dotMailify.Core
 			Validate(message);
 			if (!Settings.DisableDelivery)
 			{
-				await SendCore(message as TEmailMessage);
+				await SendCore(message as TEmailMessage, Settings);
 			}
 			else
 			{
@@ -101,7 +90,7 @@ namespace dotMailify.Core
 		{
 		}
 
-		protected abstract Task SendCore(TEmailMessage message);
+		protected abstract Task SendCore(TEmailMessage message, TEmailProcessorSettings settings);
 
 		protected string GetBodyText(TEmailMessage message, string mediaType)
 		{

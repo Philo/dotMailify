@@ -7,18 +7,18 @@ namespace dotMailify.Smtp.Pickup.Config
 {
     public sealed class DefaultPickupLocationProviderSettings : DefaultEmailProviderSettings, IPickupLocationProviderSettings
     {
-        private void ConfigureFromMailAppSettings()
+        public DefaultPickupLocationProviderSettings()
+        {
+            Configure();
+        }
+
+        private void Configure()
         {
             var settings = ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection;
             if (settings != null)
             {
                 Location = settings.SpecifiedPickupDirectory?.PickupDirectoryLocation;
             }
-        }
-
-        public DefaultPickupLocationProviderSettings()
-        {
-            ConfigureFromMailAppSettings();
         }
 
         public string Location { get; private set; }

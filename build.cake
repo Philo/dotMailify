@@ -8,20 +8,18 @@
 var target                  = Argument("target", "Default");
 var configuration           = Argument("configuration", "Release");
 var solutionPath            = MakeAbsolute(File(Argument("solutionPath", "./dotMailify.sln")));
-var nugetProjects            = Argument("nugetProjects", "dotMailify.Core,dotMailify.Smtp");
-
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
 //////////////////////////////////////////////////////////////////////
 
-var testAssemblies          = "./tests/**/bin/" +configuration +"/*.Tests.dll";
-
 var artifacts               = MakeAbsolute(Directory(Argument("artifactPath", "./artifacts")));
 var packagesOutput          = MakeAbsolute(Directory(artifacts +"/packages/"));
-var buildOutput             = MakeAbsolute(Directory(artifacts +"/build/"));
+var buildOutput             = MakeAbsolute(Directory(artifacts +"/build"));
 var testResultsPath         = MakeAbsolute(Directory(artifacts + "./tests"));
 var versionAssemblyInfo     = MakeAbsolute(File(Argument("versionAssemblyInfo", "VersionAssemblyInfo.cs")));
+
+var testAssemblies          = buildOutput +"/*.Tests.dll";
 
 IEnumerable<FilePath> nugetProjectPaths     = null;
 SolutionParserResult solution               = null;
@@ -37,11 +35,6 @@ Setup(() => {
     if(!FileExists(solutionPath)) throw new Exception(string.Format("Solution file not found - {0}", solutionPath.ToString()));
     solution = ParseSolution(solutionPath.ToString());
 
-    var projects = solution.Projects.Where(x => nugetProjects.Contains(x.Name));
-    if(projects == null || !projects.Any()) throw new Exception(string.Format("Unable to find projects '{0}' in solution '{1}'", nugetProjects, solutionPath.GetFilenameWithoutExtension()));
-    nugetProjectPaths = projects.Select(p => p.Path);
-    
-    // if(!FileExists(nugetProjectPath)) throw new Exception("project path not found");
     Information("[Setup] Using Solution '{0}'", solutionPath.ToString());
 });
 
@@ -100,6 +93,7 @@ Task("Build")
         .WithProperty("TreatWarningsAsErrors","true")
         .WithProperty("UseSharedCompilation", "false")
         .WithProperty("AutoParameterizationWebConfigConnectionStrings", "false")
+        .WithProperty("OutputPath", buildOutput.ToString())
         .SetVerbosity(Verbosity.Quiet)
         .SetConfiguration(configuration)
         .WithTarget("Rebuild")
@@ -117,17 +111,36 @@ Task("Package")
     .Does(() => 
 {
     CreateDirectory(packagesOutput);
-    foreach(var nugetProjectPath in nugetProjectPaths) {
-        var settings = new NuGetPackSettings {
-            Properties = new Dictionary<string, string> { { "Configuration", configuration }},
-            Symbols = true,
-            NoPackageAnalysis = true,
-            Version = GetNugetVersionString(),
-            OutputDirectory = packagesOutput
-        };
-        settings.ArgumentCustomization = args => args.Append("-IncludeReferencedProjects");
-        NuGetPack(nugetProjectPath, settings);                     
-    }
+
+    NuGetPack("nuspec/dotMailify.nuspec", new NuGetPackSettings {
+        Id = "dotMailify.Core",
+        Version = GetNugetVersionString(),
+        NoPackageAnalysis = false,     
+        Properties = new Dictionary<string, string> { { "Configuration", configuration }},
+        Symbols = false,
+        OutputDirectory = packagesOutput,
+        BasePath = buildOutput,
+        Files = new[] {
+            new NuSpecContent { Source = "dotMailify.Core.dll", Target = "lib/net46" }
+        }
+    });
+    
+    NuGetPack("nuspec/dotMailify.nuspec", new NuGetPackSettings {
+        Id = "dotMailify.Smtp",
+        NoPackageAnalysis = false,     
+        Properties = new Dictionary<string, string> { { "Configuration", configuration }},
+        Symbols = false,
+        Version = GetNugetVersionString(),
+        OutputDirectory = packagesOutput,
+        BasePath = buildOutput,
+        Files = new[] {
+            new NuSpecContent { Source = "dotMailify.Smtp.dll", Target = "lib/net46" }
+        },
+        Dependencies = new[] {
+            new NuSpecDependency { Id="dotMailify.Core", Version=GetNugetVersionString() }
+        }
+    });
+    
 });
 
 Task("Copy-Packages-Locally")
@@ -182,9 +195,11 @@ Task("Default")
     ;
 
 Task("CI")
-    .IsDependentOn("Default")
+    .IsDependentOn("Update-Version-Info")
     .IsDependentOn("Update-AppVeyor-Build-Number")
+    .IsDependentOn("Build")
     .IsDependentOn("Run-Unit-Tests")
+    .IsDependentOn("Package")
     ;
     
 //////////////////////////////////////////////////////////////////////

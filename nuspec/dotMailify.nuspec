@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata>
+    <authors>Phil Oyston</authors>
+    <owners>Phil Oyston</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Provides an email sending provider configurable via code or configuration</summary>
+    <description>Provides an email sending provider configurable via code or configuration, search for alternate providers</description>
+    <language>en-GB</language>
+    <copyright>Copyright 2016 Phil Oyston and contributors</copyright>
+    <tags>mail email</tags>
+    <iconUrl>http://stormid.com/media/48267/logo.jpg</iconUrl>
+    <projectUrl>https://github.com/Philo/dotMailify</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/Philo/dotMailify/master/LICENSE</licenseUrl>
+  </metadata>
+</package>

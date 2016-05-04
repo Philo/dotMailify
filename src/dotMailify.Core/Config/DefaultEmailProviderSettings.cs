@@ -8,7 +8,7 @@ namespace dotMailify.Core.Config
 {
     public class DefaultEmailProviderSettings : IEmailProviderSettings
     {
-        public virtual bool DisableDelivery => GetFromAppSettings(true);
+        public virtual bool DisableDelivery { get; } = GetFromAppSettings(true);
 
         protected static string GetFromAppSettings(string @default = null, string prefix = Constants.Settings.SettingsPrefix, [CallerMemberName] string memberName = "")
         {
