@@ -139,8 +139,7 @@ Task("Package")
         Dependencies = new[] {
             new NuSpecDependency { Id="dotMailify.Core", Version=GetNugetVersionString() }
         }
-    });
-    
+    });    
 });
 
 Task("Copy-Packages-Locally")
@@ -184,7 +183,9 @@ Task("Update-AppVeyor-Build-Number")
 //////////////////////////////////////////////////////////////////////
 
 Task("Local")
-    .IsDependentOn("Default")
+    .IsDependentOn("Update-Version-Info")
+    .IsDependentOn("Build")
+    .IsDependentOn("Package")
     .IsDependentOn("Copy-Packages-Locally")
     ;
 
