@@ -17,7 +17,7 @@ namespace dotMailify.Core
 		{
 		}
 
-        protected AbstractEmailProvider() : this(new FromConfigEmailProviderSettings()) { }
+        protected AbstractEmailProvider() : this(new DefaultEmailProviderSettings()) { }
 	}
 
 	public abstract class AbstractEmailProvider<TEmailMessage, TEmailProcessorSettings> : IEmailProvider 
@@ -53,56 +53,15 @@ namespace dotMailify.Core
 		public async Task SendAsync(IEmailMessage message)
 		{
 			Validate(message);
-			if (Settings.EnableDelivery)
+			if (!Settings.DisableDelivery)
 			{
-				await SendCore(message as TEmailMessage);
-				// await AuditOutboundMessageCore(message);
+				await SendCore(message as TEmailMessage, Settings);
 			}
 			else
 			{
                 Log($"Email delivery via [{GetType().Name}] of message {message.Subject} did not occur due to configuration [EnableDelivery = false]");
 			}
 		}
-
-        /*
-		protected async virtual Task AuditOutboundMessage(TEmailMessage message, DirectoryInfo bccDirectory)
-		{
-			using (var client = new SmtpClient
-			{
-				DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
-				EnableSsl = false,
-				PickupDirectoryLocation = bccDirectory.FullName
-			})
-			{
-				await client.SendMailAsync(message.ToMimeMessage());
-			}
-		}
-
-		protected virtual DirectoryInfo GetAuditDirectory(TEmailMessage message, string bccDirectoryPath)
-		{
-			var bccDirectoryInfo = new DirectoryInfo(bccDirectoryPath);
-			var timestamp = DateTime.UtcNow;
-			bccDirectoryInfo.Create();
-			return bccDirectoryInfo.CreateSubdirectory($@"{timestamp.Year}\{timestamp.Month}\{timestamp.Day}");
-		}
-
-		private async Task AuditOutboundMessageCore(IEmailMessage message)
-		{
-			if (!string.IsNullOrWhiteSpace(Settings.BccToDirectory))
-			{
-				try
-				{
-					var emailMessage = message as TEmailMessage;
-					var bccDirectory = GetAuditDirectory(emailMessage, Settings.BccToDirectory);
-					await AuditOutboundMessage(emailMessage, bccDirectory);
-					Log($"Outbound Message logged to {bccDirectory.FullName}");
-				}
-				catch (Exception ex)
-				{
-					Log($"Failed to audit email message to {Settings.BccToDirectory}", ex);
-				}
-			}
-		} */
 
 		private void Validate(IEmailMessage message)
 		{
@@ -131,7 +90,7 @@ namespace dotMailify.Core
 		{
 		}
 
-		protected abstract Task SendCore(TEmailMessage message);
+		protected abstract Task SendCore(TEmailMessage message, TEmailProcessorSettings settings);
 
 		protected string GetBodyText(TEmailMessage message, string mediaType)
 		{

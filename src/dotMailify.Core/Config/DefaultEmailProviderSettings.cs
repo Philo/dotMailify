@@ -1,30 +1,27 @@
 using System;
 using System.Configuration;
 using System.Runtime.CompilerServices;
+using dotMailify.Core.Abstractions;
 using dotMailify.Core.Abstractions.Config;
 
 namespace dotMailify.Core.Config
 {
-    public class FromConfigEmailProviderSettings : IEmailProviderSettings
+    public class DefaultEmailProviderSettings : IEmailProviderSettings
     {
-        private const string Prefix = "Storm.Email:";
+        public virtual bool DisableDelivery { get; } = GetFromAppSettings(true);
 
-        public bool EnableDelivery => GetFromAppSettings(false);
-        public string BccToDirectory => GetFromAppSettings();
-        public string Provider => GetFromAppSettings();
-
-        private static string GetFromAppSettings(string @default = null, string prefix = Prefix, [CallerMemberName] string memberName = "")
+        protected static string GetFromAppSettings(string @default = null, string prefix = Constants.Settings.SettingsPrefix, [CallerMemberName] string memberName = "")
         {
             return GetAppSetting(memberName, @default, prefix);
         }
 
-        private static T GetFromAppSettings<T>(T @default = default(T), string prefix = Prefix, 
+        protected static T GetFromAppSettings<T>(T @default = default(T), string prefix = Constants.Settings.SettingsPrefix, 
             [CallerMemberName] string memberName = "")
         {
             return GetAppSetting(memberName, @default, prefix);
         }
 
-        private static T GetAppSetting<T>(string key, T @default = default(T), string prefix = Prefix)
+        protected static T GetAppSetting<T>(string key, T @default = default(T), string prefix = Constants.Settings.SettingsPrefix)
         {
             var keyToRead = string.IsNullOrWhiteSpace(prefix) ? key : $"{prefix}{key}";
             var value = ConfigurationManager.AppSettings.Get(keyToRead);

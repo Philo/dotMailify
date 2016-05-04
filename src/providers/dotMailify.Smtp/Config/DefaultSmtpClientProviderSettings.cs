@@ -1,19 +1,19 @@
 using System.Configuration;
 using System.Net.Configuration;
+using dotMailify.Core.Config;
 using dotMailify.Smtp.Abstractions.Config;
 
 namespace dotMailify.Smtp.Config
 {
-    public sealed class DefaultSmtpClientProviderSettings : ISmtpClientProviderSettings
+    public sealed class DefaultSmtpClientProviderSettings : DefaultEmailProviderSettings, ISmtpClientProviderSettings
     {
-        public bool EnableDelivery { get; } = false;
-        public string Host { get; private set; }
+        public string Host { get; private set; } = "localhost";
         public int Port { get; private set; } = 25;
         public bool EnableSsl { get; private set; }
         public string Username { get; private set; }
         public string Password { get; private set; }
 
-        private void ConfigureFromMailAppSettings()
+        private void Configure()
         {
             var settings = ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection;
             if (settings != null)
@@ -28,7 +28,7 @@ namespace dotMailify.Smtp.Config
 
         public DefaultSmtpClientProviderSettings()
         {
-            ConfigureFromMailAppSettings();
+            Configure();
         }
     }
 }

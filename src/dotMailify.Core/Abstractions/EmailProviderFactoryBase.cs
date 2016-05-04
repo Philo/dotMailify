@@ -7,13 +7,18 @@ namespace dotMailify.Core.Abstractions
         public IEmailProvider GetEmailProvider()
         {
             var providerType = GetProviderType();
-            if (providerType == null) throw new ArgumentNullException(nameof(providerType), "the specified email provider type can be found");
+            if (providerType == null) throw new ArgumentNullException(nameof(providerType), Validation.EmailProviderTypeNotFound);
             if (!typeof(IEmailProvider).IsAssignableFrom(providerType)) throw new InvalidCastException("the specified type is not an email provider");
             return CreateInstance(providerType);
         }
 
-        public abstract IEmailProvider CreateInstance(Type emailProviderType);
+        public IEmailProvider CreateInstance(Type emailProviderType)
+        {
+            return CreateInstanceCore(emailProviderType);
+        }
 
-        protected abstract Type GetProviderType();
+        public abstract IEmailProvider CreateInstanceCore(Type emailProviderType);
+
+        protected abstract Type GetProviderType();        
     }
 }

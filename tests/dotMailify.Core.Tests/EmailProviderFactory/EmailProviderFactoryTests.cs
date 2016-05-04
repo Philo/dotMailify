@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using dotMailify.Core.Abstractions.Config;
 using dotMailify.Core.Message;
 using FluentAssertions;
 using Xunit;
@@ -12,7 +13,7 @@ namespace dotMailify.Core.Tests.EmailProviderFactory
     {
         public class StubEmailProvider : AbstractEmailProvider
         {
-            protected override Task SendCore(EmailMessage message)
+            protected override Task SendCore(EmailMessage message, IEmailProviderSettings settings)
             {
                 return null;
             }
