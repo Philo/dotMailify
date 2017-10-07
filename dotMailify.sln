@@ -1,21 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F1086660-146B-4817-9CEC-490A5D4F5B00}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3772714E-1E87-48B9-97A3-C6A44535EC58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotMailify.Core", "src\dotMailify.Core\dotMailify.Core.csproj", "{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotMailify.Core.Tests", "tests\dotMailify.Core.Tests\dotMailify.Core.Tests.csproj", "{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "providers", "providers", "{1F18BF65-51AF-423D-BBFA-4A01DF9A2B15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotMailify.Smtp", "src\providers\dotMailify.Smtp\dotMailify.Smtp.csproj", "{1A001481-AFA8-4BF7-A036-757A2B9E67E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotmailify.SendGrid", "src\providers\dotMailify.SendGrid\dotmailify.SendGrid.csproj", "{3162813A-5DC1-416D-939A-EFBBBF7C962D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotmailify.SendGrid", "src\providers\dotMailify.SendGrid\dotmailify.SendGrid.csproj", "{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotMailify.Smtp", "src\providers\dotMailify.Smtp\dotMailify.Smtp.csproj", "{F8D6C82B-4E64-4492-8F84-AC43D2B27EDC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotMalify.Core.Tests", "tests\dotMailify.Core.Tests\dotMalify.Core.Tests.csproj", "{F3BF3991-4766-4465-90C7-FEA0111709A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotMailify.Core", "dotMailify.Core", "{AD7089BC-C21E-4720-9532-BD50DDF96C17}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotMailify.Core", "src\dotMailify.Core\dotMailify.Core.csproj", "{8D6EB01D-276C-4733-8D66-916E022AA7F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,31 +25,35 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A001481-AFA8-4BF7-A036-757A2B9E67E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3162813A-5DC1-416D-939A-EFBBBF7C962D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3162813A-5DC1-416D-939A-EFBBBF7C962D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3162813A-5DC1-416D-939A-EFBBBF7C962D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3162813A-5DC1-416D-939A-EFBBBF7C962D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8D6C82B-4E64-4492-8F84-AC43D2B27EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8D6C82B-4E64-4492-8F84-AC43D2B27EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8D6C82B-4E64-4492-8F84-AC43D2B27EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8D6C82B-4E64-4492-8F84-AC43D2B27EDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BF3991-4766-4465-90C7-FEA0111709A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BF3991-4766-4465-90C7-FEA0111709A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BF3991-4766-4465-90C7-FEA0111709A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BF3991-4766-4465-90C7-FEA0111709A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D6EB01D-276C-4733-8D66-916E022AA7F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D6EB01D-276C-4733-8D66-916E022AA7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D6EB01D-276C-4733-8D66-916E022AA7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D6EB01D-276C-4733-8D66-916E022AA7F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{50EEA9E1-E8D8-4C92-A736-4F4BB40D20AF} = {F1086660-146B-4817-9CEC-490A5D4F5B00}
-		{E90CF6A3-2CB1-4CEE-A1AC-AC06D913016C} = {3772714E-1E87-48B9-97A3-C6A44535EC58}
 		{1F18BF65-51AF-423D-BBFA-4A01DF9A2B15} = {F1086660-146B-4817-9CEC-490A5D4F5B00}
-		{1A001481-AFA8-4BF7-A036-757A2B9E67E5} = {1F18BF65-51AF-423D-BBFA-4A01DF9A2B15}
-		{03D184CD-0AC6-4020-B24F-AD5C13FD0ECF} = {1F18BF65-51AF-423D-BBFA-4A01DF9A2B15}
+		{3162813A-5DC1-416D-939A-EFBBBF7C962D} = {1F18BF65-51AF-423D-BBFA-4A01DF9A2B15}
+		{F8D6C82B-4E64-4492-8F84-AC43D2B27EDC} = {1F18BF65-51AF-423D-BBFA-4A01DF9A2B15}
+		{F3BF3991-4766-4465-90C7-FEA0111709A0} = {3772714E-1E87-48B9-97A3-C6A44535EC58}
+		{AD7089BC-C21E-4720-9532-BD50DDF96C17} = {F1086660-146B-4817-9CEC-490A5D4F5B00}
+		{8D6EB01D-276C-4733-8D66-916E022AA7F7} = {AD7089BC-C21E-4720-9532-BD50DDF96C17}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD66D9E4-68CC-49F1-A8BD-E267912A94F4}
 	EndGlobalSection
 EndGlobal
