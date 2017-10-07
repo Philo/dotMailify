@@ -4,6 +4,7 @@ using System.Reflection;
 using dotMailify.Core.Abstractions;
 using dotMailify.Core.Abstractions.Config;
 using dotMailify.Core.Logging;
+using dotMailify.Core.Config;
 
 namespace dotMailify.Core
 {
@@ -32,7 +33,7 @@ namespace dotMailify.Core
             var providerTypeString = _providerTypeString;
             if (string.IsNullOrWhiteSpace(providerTypeString))
             {
-                providerTypeString = ConfigurationManager.AppSettings.Get(Constants.Settings.EmailProviderTypeKey);
+                providerTypeString = ConfigurationRootSingleton.Instance.ConfigurationRoot[Constants.Settings.EmailProviderTypeKey];
                 if (string.IsNullOrWhiteSpace(providerTypeString)) return null;
             }
             var providerType = Type.GetType(providerTypeString, false, true);

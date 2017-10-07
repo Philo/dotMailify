@@ -1,5 +1,4 @@
 using System.Configuration;
-using System.Net.Configuration;
 using dotMailify.Core.Config;
 using dotMailify.Smtp.Abstractions.Config;
 
@@ -14,10 +13,11 @@ namespace dotMailify.Smtp.Pickup.Config
 
         private void Configure()
         {
-            var settings = ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection;
-            if (settings != null)
+            var smtpSection = ConfigurationRootSingleton.Instance.ConfigurationRoot.GetSection(
+                                "system.net:mailSettings:smtp:");
+            if (smtpSection != null)
             {
-                Location = settings.SpecifiedPickupDirectory?.PickupDirectoryLocation;
+                Location = smtpSection["SpecifiedPickupDirectory:PickupDirectoryLocation"];
             }
         }
 

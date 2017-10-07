@@ -3,6 +3,8 @@ using System.Configuration;
 using System.Runtime.CompilerServices;
 using dotMailify.Core.Abstractions;
 using dotMailify.Core.Abstractions.Config;
+using Microsoft.Extensions.Configuration;
+using dotMailify.Core.Config;
 
 namespace dotMailify.Core.Config
 {
@@ -24,7 +26,7 @@ namespace dotMailify.Core.Config
         protected static T GetAppSetting<T>(string key, T @default = default(T), string prefix = Constants.Settings.SettingsPrefix)
         {
             var keyToRead = string.IsNullOrWhiteSpace(prefix) ? key : $"{prefix}{key}";
-            var value = ConfigurationManager.AppSettings.Get(keyToRead);
+            var value = ConfigurationRootSingleton.Instance.ConfigurationRoot[keyToRead];
             if (string.IsNullOrWhiteSpace(value))
             {
                 return @default;
